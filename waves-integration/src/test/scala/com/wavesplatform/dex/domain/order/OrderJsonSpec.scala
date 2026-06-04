@@ -40,7 +40,7 @@ class OrderJsonSpec extends WavesIntegrationSuiteBase with Matchers {
        |  "senderPublicKey" : "226pFho3kqHiCoiQVAUq5MVFkg3KzGLc2zLNsbH8GmE7",
        |  "matcherPublicKey" : "J6ghck2hA2GNJTHGSLSeuCjKuLDGz8i83NfCMFVoWhvf",
        |  "assetPair" : {
-       |    "amountAsset" : "WAVES",
+       |    "amountAsset" : "AMZX",
        |    "priceAsset" : "3BVv85"
        |  },
        |  "orderType" : "sell",
@@ -61,8 +61,8 @@ class OrderJsonSpec extends WavesIntegrationSuiteBase with Matchers {
         Json.parse(getOrderJson("null".some)).as[Order] updateProofs order.proofs shouldBe order
       }
 
-      "matcherFeeAssetId passed as WAVES" in {
-        Json.parse(getOrderJson("\"WAVES\"".some)).as[Order] updateProofs order.proofs shouldBe order
+      "matcherFeeAssetId passed as AMZX" in {
+        Json.parse(getOrderJson("\"AMZX\"".some)).as[Order] updateProofs order.proofs shouldBe order
       }
 
       "matcherFeeAssetId wasn't passed" in {

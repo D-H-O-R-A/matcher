@@ -644,7 +644,7 @@ case object WavesNodeConnectionBroken
       connectivity,
       commonEntity,
       broken,
-      e"Waves Node is unavailable, please retry later or contact with the administrator",
+      e"Amzx Node is unavailable, please retry later or contact with the administrator",
       C.ServiceUnavailable
     )
 

@@ -107,7 +107,7 @@ final class PlaceRoute(
                     askAddressActor(addressActor, o.order.sender, AddressActor.Command.PlaceOrder(o, isMarket)) {
                       case AddressActor.Event.OrderAccepted(x) => SimpleResponse(HttpSuccessfulPlace(x))
                       case x: error.MatcherError =>
-                        if (x == error.CanNotPersistEvent) x.httpCode -> HttpError.from(x, "WavesNodeUnavailable")
+                        if (x == error.CanNotPersistEvent) x.httpCode -> HttpError.from(x, "AmzxNodeUnavailable")
                         else x.httpCode -> HttpError.from(x, "OrderRejected")
                     }
                   }

@@ -234,7 +234,7 @@ final class CancelRoute(
         askAddressActor(addressActor, sender, AddressActor.Command.CancelOrder(oid, AddressActor.Command.Source.Request)) {
           case AddressActor.Event.OrderCanceled(x) => SimpleResponse(HttpSuccessfulSingleCancel(x))
           case x: error.MatcherError =>
-            if (x == error.CanNotPersistEvent) x.httpCode -> HttpError.from(x, "WavesNodeUnavailable")
+            if (x == error.CanNotPersistEvent) x.httpCode -> HttpError.from(x, "AmzxNodeUnavailable")
             else x.httpCode -> HttpError.from(x, "OrderCancelRejected")
         }
       case _ =>

@@ -15,7 +15,7 @@ Seq(
   "se.marcuslonnberg" % "sbt-docker" % "1.7.0",
   "com.github.sbt" % "sbt-git" % "2.0.0",
   "org.scalameta" % "sbt-scalafmt" % "2.0.1",
-  "ch.epfl.scala" % "sbt-scalafix" % "0.9.29",
+  // "ch.epfl.scala" % "sbt-scalafix" % "0.9.29",
   "com.github.tkawachi" % "sbt-repeat" % "0.1.0",
   /*
   undeclaredCompileDependencies{test}
@@ -36,8 +36,5 @@ libraryDependencies ++= Seq(
   "com.thesamet.scalapb" %% "compilerplugin" % "0.11.6",
   "commons-codec" % "commons-codec" % "1.14"
 )
-
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full) // Remove after scala 2.13 migration
-addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.13.0" cross CrossVersion.full)
 
 addDependencyTreePlugin // https://github.com/sbt/sbt-dependency-graph

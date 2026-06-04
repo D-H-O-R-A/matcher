@@ -718,7 +718,7 @@ class AddressActor(
                   }
                   .recover {
                     case ex: WavesNodeConnectionLostException =>
-                      log.error("Waves Node connection lost", ex)
+                      log.error("Amzx Node connection lost", ex)
                       Event.ValidationFailed(command.validatedOrder.order.id(), WavesNodeConnectionBroken)
                     case ex =>
                       log.error("An unexpected error occurred", ex)

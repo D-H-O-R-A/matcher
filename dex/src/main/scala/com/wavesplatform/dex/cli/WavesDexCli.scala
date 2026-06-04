@@ -445,7 +445,7 @@ object WavesDexCli extends ScoptImplicits {
           .action((x, s) => s.copy(dexRestApi = x)),
         opt[String]("node-rest-api")
           .abbr("nra")
-          .text("Waves Node REST API uri. Format: scheme://host:port (default scheme will be picked if none was specified)")
+          .text("Amzx Node REST API uri. Format: scheme://host:port (default scheme will be picked if none was specified)")
           .valueName("<raw-string>")
           .action((x, s) => s.copy(nodeRestApi = x)),
         opt[String]("version")

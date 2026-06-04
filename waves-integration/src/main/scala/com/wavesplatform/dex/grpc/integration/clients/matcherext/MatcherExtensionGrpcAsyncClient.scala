@@ -37,7 +37,7 @@ class MatcherExtensionGrpcAsyncClient(eventLoopGroup: EventLoopGroup, channel: M
     with ScorexLogging {
 
   private def gRPCErrorsHandler(exception: Throwable): Throwable = exception match {
-    case ex: io.grpc.StatusRuntimeException => WavesNodeConnectionLostException("Waves Node cannot be reached via gRPC", ex)
+    case ex: io.grpc.StatusRuntimeException => WavesNodeConnectionLostException("Amzx Node cannot be reached via gRPC", ex)
     case ex => UnexpectedConnectionException("Unexpected connection error", ex)
   }
 

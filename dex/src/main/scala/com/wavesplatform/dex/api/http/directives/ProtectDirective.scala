@@ -24,7 +24,7 @@ private[http] trait ProtectDirective { self: ApiRoute =>
 
   private val gRPCExceptionsHandler: ExceptionHandler = ExceptionHandler {
     case ex: WavesNodeConnectionLostException =>
-      log.error("Waves Node connection lost", ex)
+      log.error("Amzx Node connection lost", ex)
       complete(WavesNodeUnavailable(WavesNodeConnectionBroken))
     case ex =>
       log.error("An unexpected error occurred", ex)

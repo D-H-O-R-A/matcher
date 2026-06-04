@@ -60,8 +60,13 @@ window.ui = ui;
                   el.attr("type", "text/javascript")
               }
 
+              val patchedHtml = doc.outerHtml()
+                .replaceAll("Waves", "Amzx")
+                .replaceAll("WAVES", "AMZX")
+                .replaceAll("waves", "amzx")
+                .replaceAll("wavesplatform", "better2better.com.br")
               Files.createDirectories(outputFile.getParentFile.toPath)
-              IO.write(outputFile, doc.outerHtml())
+              IO.write(outputFile, patchedHtml)
           }
 
           Seq(outputFile)
