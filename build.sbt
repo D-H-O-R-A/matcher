@@ -5,11 +5,11 @@ import sbt._
 import sbt.internal.inc.ReflectUtilities
 
 // Scalafix
-ThisBuild / scalafixDependencies ++= List(
-  "org.scalatest" %% "autofix" % "3.1.0.0",
-  "org.scala-lang.modules" %% "scala-collection-migrations" % "2.1.4"
-)
-addCompilerPlugin(scalafixSemanticdb)
+// ThisBuild / scalafixDependencies ++= List(
+//   "org.scalatest" %% "autofix" % "3.1.0.0",
+//   "org.scala-lang.modules" %% "scala-collection-migrations" % "2.1.4"
+// )
+// addCompilerPlugin(scalafixSemanticdb)
 
 lazy val commonOwaspSettings = Seq(
   dependencyCheckAssemblyAnalyzerEnabled := Some(false)
@@ -102,9 +102,9 @@ lazy val root = (project in file("."))
 
 inScope(Global)(
   Seq(
-    scalaVersion := "2.13.6",
-    semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
+    scalaVersion := "2.13.14",
+    // semanticdbEnabled := false,
+    // semanticdbVersion := scalafixSemanticdb.revision,
     organization := "com.wavesplatform",
     organizationName := "Waves Platform",
     organizationHomepage := Some(url("https://wavesplatform.com")),
@@ -124,8 +124,8 @@ inScope(Global)(
       "-Ymacro-annotations",
       "-opt:l:inline",
       "-opt-inline-from:scala.**",
-      "-Yrangepos", // required for scalafix
-      "-P:semanticdb:synthetics:on",
+      // "-Yrangepos", // required for scalafix
+      // "-P:semanticdb:synthetics:on",
       // Excluding -byname-implicit is required for Scala 2.13 due to https://github.com/scala/bug/issues/12072
       "-Xlint:_,-byname-implicit" // Fixes pureconfig.generic.semiauto.deriveReader
     ),

@@ -20,7 +20,7 @@ object Dependencies {
     val cats = "2.6.1"
     val catsMacros = "2.1.1"
     val catsTaglessMacros = "0.14.0"
-    val kindProjector = "0.9.10"
+    val kindProjector = "0.13.3"
     val betterMonadicFor = "0.3.1"
     val mouse = "1.0.4"
     val shapeless = "2.3.7"
@@ -34,7 +34,7 @@ object Dependencies {
     val janino = "3.1.6"
     val logbackJsonEncoder = "6.6"
 
-    val silencer = "1.7.5"
+    val silencer = "1.7.19"
 
     val kanela = "1.0.11"
     val kamon = "2.5.4"
@@ -111,7 +111,7 @@ object Dependencies {
   private val catsCore = catsModule("core")
   private val catsMacros = "org.typelevel" %% s"cats-macros" % Version.catsMacros
   private val catsTaglessMacros = "org.typelevel" %% "cats-tagless-macros" % Version.catsTaglessMacros
-  private val kindProjector = compilerPlugin("org.typelevel" %% "kind-projector" % "0.13.0" cross CrossVersion.full)
+  private val kindProjector = compilerPlugin("org.typelevel" %% "kind-projector" % "0.13.3" cross CrossVersion.full)
   private val betterMonadicFor = compilerPlugin("com.olegpy" %% "better-monadic-for" % Version.betterMonadicFor)
   private val mouse = "org.typelevel" %% "mouse" % Version.mouse
   private val shapeless = "com.chuusai" %% "shapeless" % Version.shapeless

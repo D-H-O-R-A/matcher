@@ -13,7 +13,7 @@ import net.ceedubs.ficus.readers.{NameMapper, ValueReader}
 
 import java.io._
 import java.net.InetSocketAddress
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.{Executors, ScheduledExecutorService, TimeUnit}
 import scala.concurrent.Future
 import scala.jdk.CollectionConverters._
 
@@ -26,9 +26,11 @@ class DEXExtension(context: ExtensionContext) extends Extension with ScorexLoggi
 
   implicit val chosenCase: NameMapper = net.ceedubs.ficus.readers.namemappers.implicits.hyphenCase
 
+  private val executor: ScheduledExecutorService = Executors.newScheduledThreadPool(4)
+
   implicit private val apiScheduler: Scheduler = Scheduler(
-    ec = context.actorSystem.dispatchers.lookup("akka.actor.waves-dex-grpc-scheduler"),
-    executionModel = ExecutionModel.AlwaysAsyncExecution
+    executor,
+    ExecutionModel.AlwaysAsyncExecution
   )
 
   implicit val byteStrValueReader: ValueReader[ByteStr] = (config: Config, path: String) => {
@@ -66,6 +68,7 @@ class DEXExtension(context: ExtensionContext) extends Extension with ScorexLoggi
   override def shutdown(): Future[Unit] = {
     log.info("Shutting down gRPC DEX extension")
     if (server != null) server.shutdownNow()
+    executor.shutdown()
     Future.successful(())
   }
 
