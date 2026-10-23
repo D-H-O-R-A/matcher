@@ -576,15 +576,17 @@ object OrderBookDirectoryActorSpecification {
     private def handleDelete: Receive = { case ValidatedCommandWithMeta(_, _, _: ValidatedCommand.DeleteOrderBook) => context.stop(self) }
   }
 
-  private def emptySnapshotStoreActor(implicit actorSystem: ActorSystem): ActorRef = {
+  protected def emptySnapshotStoreActor(implicit actorSystem: ActorSystem): ActorRef = {
     val p = TestProbe()
-    p.setAutoPilot { (sender: ActorRef, msg: Any) =>
-      msg match {
-        case _: Message.GetSnapshot => sender ! Response.GetSnapshot(None)
-        case _ => throw new RuntimeException(s"Unexpected message: $msg")
+    p.setAutoPilot(new TestActor.AutoPilot {
+      override def run(sender: ActorRef, msg: Any): TestActor.AutoPilot = {
+        msg match {
+          case _: Message.GetSnapshot => sender ! Response.GetSnapshot(None)
+          case _ => throw new RuntimeException(s"Unexpected message: $msg")
+        }
+        TestActor.KeepRunning
       }
-      TestActor.KeepRunning
-    }
+    })
     p.ref
   }
 
